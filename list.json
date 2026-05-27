@@ -1,11 +1,5 @@
 [
     {
-        "title": "海外直播源0",
-        "titleEn": "Recommended 0",
-        "url": "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/Global.m3u",
-        "lock": 1
-    },
-    {
         "title": "海外直播源1",
         "titleEn": "Recommended 1",
         "url": "https://raw.githubusercontent.com/YueChan/Live/refs/heads/main/Global.m3u",
@@ -61,10 +55,3 @@
         "lock": 0
     }
 ]
-
-
-
-    }
-]
-
-
