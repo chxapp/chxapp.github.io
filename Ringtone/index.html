@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create custom ringtones from any song with AI. No computer needed. 100% free. Available on iOS App Store in the US, Hong Kong, Macau, and China.">
+  <title>Ringtone Maker — AI Ringtones for iPhone</title>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:#26215c;background:#faf9f5;line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23534ab7' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+    }
+    img,svg{display:block;max-width:100%}
+
+    h1,h2,h3{font-weight:700;letter-spacing:-0.025em;line-height:1.1}
+    h1{font-size:clamp(2.5rem,6vw,4.5rem)}
+    h2{font-size:clamp(2rem,4vw,3rem)}
+    h3{font-size:clamp(1.125rem,2vw,1.375rem)}
+
+    .section-tag{
+      font-size:0.8125rem;font-weight:600;letter-spacing:0.08em;
+      text-transform:uppercase;color:#888780;margin-bottom:1rem
+    }
+
+    .container{max-width:1280px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+    section{padding:clamp(4rem,8vw,8rem) 0}
+
+    /* Nav */
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      padding:1rem clamp(1.25rem,4vw,3rem);
+      display:flex;align-items:center;justify-content:space-between;
+      transition:background 0.3s,box-shadow 0.3s
+    }
+    .nav.scrolled{
+      background:rgba(250,249,245,0.92);
+      backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      box-shadow:0 1px 0 rgba(83,74,183,0.08)
+    }
+    .nav-logo{
+      font-weight:800;font-size:1.125rem;letter-spacing:-0.02em;
+      color:#534ab7;text-decoration:none;display:flex;align-items:center;gap:0.5rem
+    }
+    .nav-logo svg{width:28px;height:28px}
+    .nav-cta{
+      display:inline-flex;align-items:center;gap:0.5rem;
+      padding:0.625rem 1.25rem;background:#534ab7;color:#fff;
+      border-radius:2rem;font-size:0.875rem;font-weight:600;
+      text-decoration:none;transition:transform 0.2s,background 0.2s
+    }
+    .nav-cta:hover{transform:scale(1.03);background:#3c3489}
+
+    /* Hero */
+    .hero{
+      min-height:100dvh;display:grid;grid-template-columns:1fr;
+      align-items:center;padding-top:5rem
+    }
+    @media(min-width:768px){.hero{grid-template-columns:1fr 1fr;gap:3rem}}
+    .hero-content{max-width:560px}
+    .hero-content h1{margin-bottom:1.5rem}
+    .hero-content h1 span{color:#534ab7}
+    .hero-content p{
+      font-size:clamp(1.0625rem,2vw,1.25rem);color:#5f5e5a;
+      max-width:48ch;margin-bottom:2rem;line-height:1.5
+    }
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2rem}
+    .btn{
+      display:inline-flex;align-items:center;gap:0.5rem;
+      padding:0.875rem 1.75rem;border-radius:2.5rem;
+      font-size:1rem;font-weight:600;text-decoration:none;
+      transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;border:none
+    }
+    .btn:active{transform:scale(0.97)}
+    .btn-primary{background:#534ab7;color:#fff}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(83,74,183,0.3)}
+    .btn-outline{border:2px solid #d3d1c7;color:#26215c;background:transparent}
+    .btn-outline:hover{border-color:#534ab7;color:#534ab7}
+
+    /* Phone Mockup */
+    .hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+    .phone-frame{
+      position:relative;width:280px;height:568px;background:#1a1a2e;
+      border-radius:2.75rem;box-shadow:0 24px 80px rgba(83,74,183,0.12),0 2px 0 rgba(83,74,183,0.06);
+      padding:10px
+    }
+    .phone-notch{
+      position:absolute;top:10px;left:50%;transform:translateX(-50%);
+      width:120px;height:28px;background:#1a1a2e;border-radius:0 0 18px 18px;z-index:2
+    }
+    .phone-screen{
+      width:100%;height:100%;border-radius:2.25rem;overflow:hidden;
+      background:linear-gradient(160deg,#534ab7 0%,#7f77dd 28%,#d85a30 65%,#f0997b 100%);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:1.5rem 1.25rem
+    }
+    .screen-header{display:flex;align-items:center;gap:0.5rem;margin-bottom:2rem}
+    .screen-avatar{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.2)}
+    .screen-text{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,0.15)}
+    .screen-text.short{width:60%}
+    .waveform{width:100%;display:flex;align-items:flex-end;justify-content:center;gap:3px;height:80px;margin-bottom:1.5rem}
+    .waveform .bar{flex:1;max-width:8px;border-radius:2px;background:rgba(255,255,255,0.35);animation:wave-bar 1.2s ease-in-out infinite}
+    .waveform .bar:nth-child(1){height:40%;animation-delay:0s}
+    .waveform .bar:nth-child(2){height:65%;animation-delay:0.08s}
+    .waveform .bar:nth-child(3){height:90%;animation-delay:0.16s}
+    .waveform .bar:nth-child(4){height:55%;animation-delay:0.24s}
+    .waveform .bar:nth-child(5){height:80%;animation-delay:0.32s}
+    .waveform .bar:nth-child(6){height:45%;animation-delay:0.4s}
+    .waveform .bar:nth-child(7){height:70%;animation-delay:0.48s}
+    .waveform .bar:nth-child(8){height:100%;animation-delay:0.56s}
+    .waveform .bar:nth-child(9){height:60%;animation-delay:0.64s}
+    .waveform .bar:nth-child(10){height:50%;animation-delay:0.72s}
+    .waveform .bar:nth-child(11){height:75%;animation-delay:0.8s}
+    .waveform .bar:nth-child(12){height:35%;animation-delay:0.88s}
+    .waveform .bar:nth-child(13){height:85%;animation-delay:0.96s}
+    .waveform .bar:nth-child(14){height:55%;animation-delay:1.04s}
+    .waveform .bar:nth-child(15){height:40%;animation-delay:1.12s}
+    .screen-btn{
+      padding:0.625rem 2rem;border-radius:1.5rem;
+      background:rgba(255,255,255,0.2);color:#fff;
+      font-size:0.8125rem;font-weight:600;margin-bottom:0.75rem;
+      backdrop-filter:blur(4px)
+    }
+    .screen-sub{font-size:0.6875rem;color:rgba(255,255,255,0.6)}
+
+    @keyframes wave-bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.4)}}
+
+    .floating-badge{
+      position:absolute;background:#fff;border-radius:1rem;
+      padding:0.75rem 1rem;box-shadow:0 4px 16px rgba(0,0,0,0.06);
+      font-size:0.8125rem;font-weight:600;color:#26215c;
+      display:flex;align-items:center;gap:0.5rem;
+      animation:float-badge 6s ease-in-out infinite
+    }
+    .floating-badge.top-right{top:6%;right:-12%;animation-delay:0s}
+    .floating-badge.bottom-left{bottom:12%;left:-8%;animation-delay:3s}
+    @keyframes float-badge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    /* Features */
+    .features-grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem)}
+    @media(min-width:768px){.features-grid{grid-template-columns:repeat(3,1fr)}}
+    .feature-item{
+      border-top:2px solid #e8e6dc;padding-top:2rem;
+      transition:border-color 0.3s
+    }
+    .feature-item:hover{border-top-color:#534ab7}
+    .feature-item .icon{
+      width:48px;height:48px;margin-bottom:1.5rem;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:0.875rem;background:#eeedfe
+    }
+    .feature-item:nth-child(2) .icon{background:#faeeef}
+    .feature-item:nth-child(3) .icon{background:#fef3e7}
+    .feature-item .icon svg{width:24px;height:24px}
+    .feature-item h3{margin-bottom:0.75rem}
+    .feature-item p{color:#5f5e5a;max-width:36ch;line-height:1.6}
+
+    /* Steps */
+    .steps{display:grid;grid-template-columns:1fr;gap:0}
+    @media(min-width:768px){.steps{grid-template-columns:repeat(3,1fr);gap:0}}
+    .step{
+      position:relative;padding:2.5rem 2rem 2.5rem 3rem;
+      border-left:2px solid #e8e6dc;transition:border-color 0.3s
+    }
+    .step:hover{border-left-color:#534ab7}
+    @media(min-width:768px){
+      .step{border-left:none;border-top:3px solid #e8e6dc;padding:2.5rem 2rem 0 0}
+      .step:hover{border-top-color:#534ab7}
+    }
+    .step-number{
+      font-size:clamp(3rem,5vw,4rem);font-weight:800;
+      color:#eeedfe;line-height:1;margin-bottom:0.25rem
+    }
+    .step h3{margin-bottom:0.5rem}
+    .step p{color:#5f5e5a;max-width:32ch}
+
+    /* Markets */
+    .markets-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+    @media(min-width:768px){.markets-grid{grid-template-columns:repeat(3,1fr)}}
+    .market-card{
+      padding:2rem;border-radius:1.25rem;border:1px solid #e8e6dc;
+      transition:border-color 0.3s,transform 0.3s;position:relative;overflow:hidden
+    }
+    .market-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:#534ab7;transform:scaleX(0);transform-origin:left;
+      transition:transform 0.4s cubic-bezier(0.16,1,0.3,1)
+    }
+    .market-card:hover::before{transform:scaleX(1)}
+    .market-card:hover{transform:translateY(-4px)}
+    .market-card .flag-badge{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:40px;height:40px;border-radius:0.75rem;font-weight:800;
+      font-size:0.875rem;margin-bottom:1.25rem;letter-spacing:-0.02em
+    }
+    .market-card:nth-child(1) .flag-badge{background:#eeedfe;color:#534ab7}
+    .market-card:nth-child(2) .flag-badge{background:#e1f5ee;color:#085041}
+    .market-card:nth-child(3) .flag-badge{background:#faece7;color:#993c1d}
+    .market-card h3{margin-bottom:0.5rem}
+    .market-card p{color:#5f5e5a;font-size:0.9375rem;line-height:1.5;margin-bottom:1.25rem}
+    .market-card .tag{
+      display:inline-block;padding:0.25rem 0.75rem;border-radius:1rem;
+      font-size:0.75rem;font-weight:600;background:#f5f3ff;color:#534ab7
+    }
+
+    /* Testimonials */
+    .testimonials{overflow:hidden;mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent)}
+    .testimonial-track{
+      display:flex;gap:1.5rem;
+      animation:scroll-testimonials 35s linear infinite;
+      padding:0.5rem 0
+    }
+    .testimonial-track:hover{animation-play-state:paused}
+    .testimonial-card{
+      flex:0 0 300px;padding:2rem;border-radius:1.25rem;
+      border:1px solid #e8e6dc;background:#fff
+    }
+    .testimonial-card .stars{color:#ef9f27;font-size:0.875rem;margin-bottom:1rem;letter-spacing:0.15em}
+    .testimonial-card blockquote{
+      font-size:0.9375rem;color:#444441;line-height:1.6;
+      margin-bottom:1.25rem;font-style:italic;quotes:none
+    }
+    .testimonial-card .author{font-size:0.8125rem;font-weight:600;color:#26215c}
+    @keyframes scroll-testimonials{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Stats Row */
+    .stats-row{
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:1.5rem;max-width:800px;margin:0 auto 0
+    }
+    .stat-item{text-align:center}
+    .stat-value{font-size:clamp(2rem,3vw,2.75rem);font-weight:800;color:#534ab7;line-height:1}
+    .stat-label{font-size:0.875rem;color:#888780;margin-top:0.5rem}
+
+    /* CTA */
+    .cta-section{background:#26215c;color:#eeedfe;text-align:center;border-radius:0;position:relative;overflow:hidden}
+    .cta-section::before{
+      content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+      background:radial-gradient(circle at 30% 50%,rgba(83,74,183,0.3) 0%,transparent 50%),
+                 radial-gradient(circle at 70% 50%,rgba(216,90,48,0.2) 0%,transparent 50%);
+      animation:cta-rotate 20s linear infinite
+    }
+    @keyframes cta-rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    .cta-section .container{position:relative;z-index:1}
+    .cta-section h2{color:#fff;margin-bottom:1rem}
+    .cta-section p{color:#b4b2a9;max-width:56ch;margin:0 auto 2rem;font-size:1.125rem}
+    .cta-section .btn-primary{background:#d85a30;color:#fff}
+    .cta-section .btn-primary:hover{box-shadow:0 8px 32px rgba(216,90,48,0.4)}
+
+    /* Footer */
+    .footer{
+      padding:3rem clamp(1.25rem,4vw,3rem);border-top:1px solid #e8e6dc;
+      display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem
+    }
+    .footer-links{display:flex;flex-wrap:wrap;gap:1.5rem}
+    .footer-links a{color:#888780;text-decoration:none;font-size:0.875rem;transition:color 0.2s}
+    .footer-links a:hover{color:#534ab7}
+    .footer-copy{color:#b4b2a9;font-size:0.8125rem}
+
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:0.1s}
+    .reveal-delay-2{transition-delay:0.2s}
+    .reveal-delay-3{transition-delay:0.3s}
+
+    @media(prefers-reduced-motion:reduce){
+      .reveal{opacity:1;transform:none;transition:none}
+      .testimonial-track{animation:none}
+      .waveform .bar{animation:none}
+      .floating-badge{animation:none}
+      .cta-section::before{animation:none}
+      .market-card::before{transition:none}
+    }
+
+    /* Responsive */
+    @media(max-width:767px){
+      .phone-frame{width:220px;height:446px;border-radius:2.25rem;padding:8px}
+      .phone-screen{border-radius:1.75rem}
+      .phone-notch{top:8px;width:90px;height:24px;border-radius:0 0 14px 14px}
+      .floating-badge.top-right{right:-4%;font-size:0.75rem;padding:0.5rem 0.75rem}
+      .floating-badge.bottom-left{display:none}
+      .hero-visual{margin-top:2rem}
+      .stats-row{gap:1rem}
+      .step{padding:2rem 1.5rem}
+      .footer-links{gap:1rem}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Ringtone Maker home">
+      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="8" fill="#534ab7"/><path d="M8 20V8l6 4.5L20 8v12" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Ringtone Maker
+    </a>
+    <a href="#download" class="nav-cta">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download Free
+    </a>
+  </nav>
+
+  <section class="hero container">
+    <div class="hero-content reveal">
+      <p class="section-tag">AI Ringtone Creator</p>
+      <h1>Your phone, <span>your sound.</span> No computer needed.</h1>
+      <p>Turn any song, video, or audio clip into a custom iPhone ringtone in seconds. AI finds the best part. Completely free.</p>
+      <div class="hero-ctas">
+        <a href="#download" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v10M6 8l4 4 4-4M4 16h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download on App Store
+        </a>
+        <a href="#how-it-works" class="btn btn-outline">See how it works</a>
+      </div>
+      <div class="stats-row" style="max-width:420px;margin:0">
+        <div class="stat-item" style="text-align:left"><div class="stat-value">4.7</div><div class="stat-label">App Store Rating</div></div>
+        <div class="stat-item" style="text-align:left"><div class="stat-value">50M+</div><div class="stat-label">Ringtones Created</div></div>
+        <div class="stat-item" style="text-align:left"><div class="stat-value">10M+</div><div class="stat-label">Happy Users</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay-1">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="screen-header">
+            <div class="screen-avatar"></div>
+            <div><div class="screen-text" style="width:80px;margin-bottom:4px"></div><div class="screen-text short" style="width:50px;height:6px"></div></div>
+          </div>
+          <div class="waveform">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          </div>
+          <div class="screen-btn">Create Ringtone</div>
+          <div class="screen-sub">AI auto-detects the best clip</div>
+        </div>
+      </div>
+      <div class="floating-badge bottom-left">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l6 4-6 4-6-4 6-4z" stroke="#d85a30" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 6v4l6 4 6-4V6" stroke="#d85a30" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        50M+ Created
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="container">
+    <p class="section-tag reveal">Core capabilities</p>
+    <h2 class="reveal reveal-delay-1" style="max-width:20ch;margin-bottom:3rem">Everything you need to create the perfect ringtone</h2>
+    <div class="features-grid">
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v6l-2-1.5L8 8V2M4 8l4 3v9l-4-3V8zm16 0l-4 3v9l4-3V8z" stroke="#534ab7" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>AI Auto-Cutter</h3>
+        <p>Our AI finds the best part of any song and creates a ringtone in one tap. No trimming skills needed.</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="#d85a30" stroke-width="1.5"/><path d="M9 8l3 2.5L9 13V8z" stroke="#d85a30" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Import from Anywhere</h3>
+        <p>Extract audio from YouTube, TikTok, your Music library, or any video. If you can hear it, you can ringtone it.</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#534ab7" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#534ab7" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>One-Tap Set</h3>
+        <p>Set as ringtone, text tone, or alarm directly from the app. No iTunes, no cables, no computer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="container">
+    <p class="section-tag reveal">How it works</p>
+    <h2 class="reveal reveal-delay-1" style="max-width:18ch;margin-bottom:3rem">Three steps to a better ringtone</h2>
+    <div class="steps">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-number">01</div>
+        <h3>Pick a song</h3>
+        <p>Choose from your library, YouTube, TikTok, or any audio file on your phone.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-number">02</div>
+        <h3>AI does the work</h3>
+        <p>Our AI finds the best clip. Or fine-tune it yourself with millisecond precision.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-number">03</div>
+        <h3>Set &amp; enjoy</h3>
+        <p>One tap sets it as your ringtone. Works for calls, messages, alarms, and custom contacts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="markets" class="container">
+    <p class="section-tag reveal">Available worldwide</p>
+    <h2 class="reveal reveal-delay-1" style="max-width:22ch;margin-bottom:3rem">Optimized for every market, loved everywhere</h2>
+    <div class="markets-grid">
+      <div class="market-card reveal reveal-delay-1">
+        <div class="flag-badge">US</div>
+        <h3>United States</h3>
+        <p>AI ringtone creation with support for Apple Music, YouTube, and TikTok imports.</p>
+        <span class="tag">English</span>
+      </div>
+      <div class="market-card reveal reveal-delay-2">
+        <div class="flag-badge">HK</div>
+        <h3>Hong Kong &amp; Macau</h3>
+        <p>Cantonese ringtone library with KKBox and Joox integration. Bilingual support.</p>
+        <span class="tag">繁體中文 · English</span>
+      </div>
+      <div class="market-card reveal reveal-delay-3">
+        <div class="flag-badge">CN</div>
+        <h3>Mainland China</h3>
+        <p>Douyin trending ringtones, WeChat notification sounds, and popular Chinese music support.</p>
+        <span class="tag">简体中文</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="container" style="padding-bottom:4rem">
+    <p class="section-tag reveal">What users say</p>
+    <h2 class="reveal reveal-delay-1" style="max-width:20ch;margin-bottom:3rem">Loved by millions of ringtone creators</h2>
+    <div class="testimonials" aria-label="User testimonials" role="region">
+      <div class="testimonial-track" id="testimonial-track">
+        <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Finally an app that lets me make ringtones without plugging into my computer. The AI cutter is surprisingly good!</blockquote><div class="author">Sarah M., New York</div></div>
+        <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>I use it for all my K-pop ringtones. The YouTube import feature is a game changer.</blockquote><div class="author">David K., Los Angeles</div></div>
+        <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Cantonese ringtone support is amazing. Finally found an app that has the songs I actually want.</blockquote><div class="author">Wong T., Hong Kong</div></div>
+        <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Made a ringtone from my favorite Douyin sound in 30 seconds. This app just works.</blockquote><div class="author">Li W., Shanghai</div></div>
+        <div class="testimonial-card"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><blockquote>Clean, simple, no ads shoved in my face. The way apps should be.</blockquote><div class="author">Mike R., Chicago</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="cta-section">
+    <div class="container" style="text-align:center">
+      <h2>Ready to make your phone sound like you?</h2>
+      <p>100% free. No computer needed. Create your first custom ringtone in under 30 seconds.</p>
+      <a href="#" class="btn btn-primary" style="font-size:1.125rem;padding:1rem 2.25rem">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v10M6 8l4 4 4-4M4 16h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer container">
+    <div class="footer-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#markets">Markets</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Ringtone Maker. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal')
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {if(entry.isIntersecting) entry.target.classList.add('visible')})
+    }, {threshold:0.15,rootMargin:'0px 0px -40px 0px'})
+    revealElements.forEach(el => observer.observe(el))
+
+    const nav = document.getElementById('nav')
+    window.addEventListener('scroll', () => {nav.classList.toggle('scrolled', window.scrollY > 10)},{passive:true})
+
+    const track = document.getElementById('testimonial-track')
+    const cards = track.innerHTML
+    track.innerHTML = cards + cards
+  </script>
+</body>
+</html>

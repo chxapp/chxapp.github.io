@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Agreement - Ringtone Maker</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #2c2c2e;
+      background: #f2f2f7;
+      line-height: 1.75;
+      padding: 32px 16px 60px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── Header Card ── */
+    .header-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 36px 32px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+      text-align: center;
+    }
+    .header-card .icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #534ab7 0%, #7c6ff7 100%);
+      border-radius: 14px;
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .header-card .icon svg { width: 28px; height: 28px; }
+    .header-card h1 {
+      font-size: 26px; font-weight: 700; color: #1c1c1e;
+      letter-spacing: -0.3px; margin-bottom: 4px;
+    }
+    .header-card .subtitle {
+      font-size: 14px; color: #8e8e93; margin-bottom: 0;
+    }
+
+    /* ── Intro Card ── */
+    .intro-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .intro-card p { margin-bottom: 10px; }
+    .intro-card p:last-child { margin-bottom: 0; }
+
+    /* ── TOC Card ── */
+    .toc-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .toc-card .toc-title {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.8px; color: #534ab7; margin-bottom: 14px;
+    }
+    .toc-card .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+    }
+    .toc-card .toc-item {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 8px 12px; border-radius: 8px;
+      background: #f9f9fc;
+      font-size: 14px; color: #3a3a3c;
+      transition: background 0.15s;
+    }
+    .toc-card .toc-num {
+      width: 22px; height: 22px;
+      background: #534ab7; color: #fff;
+      border-radius: 50%;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Section Card ── */
+    .section-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .section-card h2 {
+      font-size: 19px; font-weight: 700; color: #1c1c1e;
+      margin-bottom: 14px; padding-bottom: 12px;
+      border-bottom: 2px solid #f2f2f7;
+      letter-spacing: -0.2px;
+    }
+    .section-card h3 {
+      font-size: 16px; font-weight: 600; color: #3a3a3c;
+      margin: 18px 0 8px;
+    }
+    .section-card p {
+      font-size: 15px; color: #48484a; margin-bottom: 10px;
+    }
+    .section-card p:last-child { margin-bottom: 0; }
+    .section-card ul {
+      margin: 6px 0 12px 20px;
+    }
+    .section-card ol {
+      margin: 6px 0 12px 20px;
+    }
+    .section-card li {
+      font-size: 15px; color: #48484a; margin-bottom: 6px;
+    }
+    .section-card strong { color: #1c1c1e; font-weight: 600; }
+    .section-card a { color: #534ab7; text-decoration: none; font-weight: 500; }
+    .section-card a:hover { text-decoration: underline; }
+
+    /* ── Highlight callout ── */
+    .callout {
+      background: #f9f9fc;
+      border-left: 4px solid #534ab7;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 14px 0;
+    }
+    .callout p { margin-bottom: 0; }
+
+    /* ── Footer Card ── */
+    .footer-card {
+      text-align: center; padding: 24px;
+      color: #8e8e93; font-size: 13px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 16px 10px 40px; }
+      .header-card { padding: 28px 20px 22px; }
+      .header-card h1 { font-size: 22px; }
+      .intro-card, .toc-card, .section-card { padding: 22px 20px; }
+      .toc-card .toc-grid { grid-template-columns: 1fr; }
+      .section-card h2 { font-size: 17px; }
+      .section-card li { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header-card">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+    </div>
+    <h1>Ringtone Maker User Agreement</h1>
+    <p class="subtitle">Effective Date: June 11, 2026</p>
+  </div>
+
+  <!-- Introduction -->
+  <div class="intro-card">
+    <p><strong>Welcome to Ringtone Maker!</strong></p>
+    <p>This User Agreement (the "Agreement") is a legally binding contract between you and the operator of Ringtone Maker ("we," "us," or "the Company"). Please read this Agreement carefully before using the Ringtone Maker mobile application and related services (collectively, the "Service").</p>
+    <p><strong>By downloading, installing, or using Ringtone Maker, you acknowledge that you have read, understood, and agree to be bound by this Agreement. If you do not agree, please do not use the Service.</strong></p>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="toc-card">
+    <p class="toc-title">What's Inside</p>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="toc-num">1</span> Acceptance of Terms</div>
+      <div class="toc-item"><span class="toc-num">7</span> Third-Party Services</div>
+      <div class="toc-item"><span class="toc-num">2</span> Service Description</div>
+      <div class="toc-item"><span class="toc-num">8</span> Disclaimer of Warranties</div>
+      <div class="toc-item"><span class="toc-num">3</span> User Conduct &amp; Obligations</div>
+      <div class="toc-item"><span class="toc-num">9</span> Limitation of Liability</div>
+      <div class="toc-item"><span class="toc-num">4</span> Intellectual Property</div>
+      <div class="toc-item"><span class="toc-num">10</span> Termination</div>
+      <div class="toc-item"><span class="toc-num">5</span> Privacy &amp; Data</div>
+      <div class="toc-item"><span class="toc-num">11</span> Governing Law</div>
+      <div class="toc-item"><span class="toc-num">6</span> In-App Purchases &amp; Ads</div>
+      <div class="toc-item"><span class="toc-num">12</span> Contact Us</div>
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section-card">
+    <h2>1. Acceptance of Terms</h2>
+
+    <p>1.1 This Agreement constitutes the entire agreement between you and the Company regarding your use of Ringtone Maker. This Agreement also incorporates by reference our <strong>Privacy Policy</strong>, which describes how we collect, use, and protect your personal information.</p>
+
+    <p>1.2 We reserve the right to modify this Agreement at any time. When we make material changes, we will notify you by updating the "Effective Date" above and, where appropriate, through the App or other means. Your continued use of the Service after any changes constitutes your acceptance of the revised Agreement.</p>
+
+    <p>1.3 <strong>If you are under the age of 17, you must have your parent or legal guardian read and consent to this Agreement on your behalf.</strong> By using the Service, you represent that you meet the minimum age requirement.</p>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section-card">
+    <h2>2. Service Description</h2>
+
+    <p>2.1 Ringtone Maker is a mobile application that allows you to create custom ringtones, notification sounds, and alarm tones from audio files on your device. Core features include:</p>
+    <ul>
+      <li>Importing audio and music files from your device's media library</li>
+      <li>Trimming, editing, and selecting audio segments for ringtone creation</li>
+      <li>Applying audio effects such as fade-in, fade-out, and volume adjustment</li>
+      <li>Setting created ringtones as your device's ringtone, text tone, or alarm sound</li>
+    </ul>
+
+    <p>2.2 The Service is provided "as is" and we may update, modify, suspend, or discontinue any aspect of the Service at any time without prior notice. We are not liable to you or any third party for such modifications.</p>
+
+    <p>2.3 <strong>You are responsible for obtaining and maintaining the device, internet connection, and any other equipment necessary to access the Service.</strong> Data usage charges from your mobile carrier may apply, and you are solely responsible for those costs.</p>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section-card">
+    <h2>3. User Conduct &amp; Obligations</h2>
+
+    <h3>3.1 Lawful Use</h3>
+    <p>You agree to use the Service only for lawful purposes and in compliance with all applicable laws, regulations, and this Agreement. You may not:</p>
+    <ul>
+      <li>Use the Service to create ringtones from copyrighted material without proper authorization from the rights holder</li>
+      <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code of the App</li>
+      <li>Use any robot, spider, scraper, or other automated means to access the Service</li>
+      <li>Interfere with or disrupt the Service, servers, or networks connected to the Service</li>
+      <li>Upload, post, or transmit any viruses, malware, or other harmful code</li>
+      <li>Use the Service for any commercial purpose not expressly authorized by us</li>
+    </ul>
+
+    <h3>3.2 Content Responsibility</h3>
+    <p>You are solely responsible for all audio files and content you import, create, or modify using the Service. You represent and warrant that you have all necessary rights and permissions to use such content and that it does not infringe any third-party intellectual property rights.</p>
+
+    <div class="callout">
+      <p><strong>Important:</strong> Ringtone Maker is a tool for creating ringtones from your own legally obtained music and audio files. We do not host, distribute, or provide copyrighted music or audio content.</p>
+    </div>
+
+    <h3>3.3 Prohibited Content</h3>
+    <p>You may not use the Service to create, store, or distribute ringtones that:</p>
+    <ul>
+      <li>Violate any applicable law or regulation</li>
+      <li>Infringe upon any third party's intellectual property, privacy, or other rights</li>
+      <li>Contain defamatory, obscene, harassing, or threatening content</li>
+      <li>Promote illegal activities, violence, or discrimination</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section-card">
+    <h2>4. Intellectual Property</h2>
+
+    <p>4.1 <strong>Our Intellectual Property.</strong> The Ringtone Maker application, including its code, design, user interface, graphics, logos, and all related materials, is owned by the Company and protected by copyright, trademark, and other intellectual property laws. You are granted a limited, non-exclusive, non-transferable, revocable license to use the App for personal, non-commercial purposes.</p>
+
+    <p>4.2 <strong>Your Content.</strong> You retain all rights to the audio files and ringtones you import or create using the Service. We do not claim ownership over your content. All ringtone creation and editing is performed locally on your device, and your audio files are not uploaded to our servers.</p>
+
+    <p>4.3 <strong>Feedback.</strong> If you provide us with any feedback, suggestions, or ideas regarding the Service, you agree that we may use such feedback without any obligation to compensate you.</p>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section-card">
+    <h2>5. Privacy &amp; Data</h2>
+
+    <p>5.1 Your privacy is important to us. Our <strong>Privacy Policy</strong> (available within the App and on our website) explains how we collect, use, disclose, and protect your personal information. By using the Service, you consent to our collection and use of your information as described in the Privacy Policy.</p>
+
+    <p>5.2 We do not upload your audio files or created ringtones to our servers. Ringtone creation and editing are processed entirely on your device.</p>
+
+    <p>5.3 We may collect device information, usage data, and advertising identifiers as described in our Privacy Policy to improve the Service and display advertisements.</p>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="section-card">
+    <h2>6. In-App Purchases &amp; Advertising</h2>
+
+    <p>6.1 <strong>Free Service.</strong> Ringtone Maker is free to download and use. Certain premium features may be offered as optional in-app purchases.</p>
+
+    <p>6.2 <strong>Advertising.</strong> To support our free service, we display advertisements within the App. These ads are served by third-party advertising networks (such as Google AdMob). By using the Service, you consent to the display of such advertisements.</p>
+
+    <p>6.3 <strong>In-App Purchases.</strong> Any in-app purchases are processed through the Apple App Store and are subject to Apple's terms and conditions. We are not responsible for billing, payment processing, or refunds for in-app purchases. Please contact Apple for purchase-related inquiries.</p>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="section-card">
+    <h2>7. Third-Party Services</h2>
+
+    <p>7.1 The Service may integrate with or link to third-party services, including Google AdMob for advertising. We do not control these third-party services and are not responsible for their content, privacy practices, or terms of use.</p>
+
+    <p>7.2 Your interactions with third-party services are solely between you and the third party. We encourage you to review the terms and privacy policies of any third-party service before use.</p>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="section-card">
+    <h2>8. Disclaimer of Warranties</h2>
+
+    <div class="callout">
+      <p><strong>THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.</strong></p>
+    </div>
+
+    <p>8.1 To the fullest extent permitted by applicable law, we disclaim all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, non-infringement, and that the Service will be uninterrupted, error-free, or secure.</p>
+
+    <p>8.2 We do not warrant that the ringtones you create will be compatible with all device configurations or that the Service will meet all of your requirements.</p>
+
+    <p>8.3 We make no representations regarding the quality, accuracy, or reliability of any third-party advertisements displayed within the App.</p>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="section-card">
+    <h2>9. Limitation of Liability</h2>
+
+    <p>9.1 <strong>To the maximum extent permitted by law, the Company and its affiliates, officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages</strong>, including but not limited to loss of profits, data, use, or goodwill, arising out of or in connection with your use of the Service.</p>
+
+    <p>9.2 Our total liability for any claims arising from your use of the Service shall not exceed the amount you have paid to us (if any) in the twelve (12) months preceding the claim.</p>
+
+    <p>9.3 Some jurisdictions do not allow the exclusion or limitation of certain warranties or liabilities. In such jurisdictions, our liability is limited to the fullest extent permitted by law.</p>
+  </div>
+
+  <!-- Section 10 -->
+  <div class="section-card">
+    <h2>10. Termination</h2>
+
+    <p>10.1 This Agreement remains effective until terminated by either you or us. You may terminate this Agreement at any time by deleting the App from your device and ceasing all use of the Service.</p>
+
+    <p>10.2 We may suspend or terminate your access to the Service at any time, with or without cause or notice, including if we reasonably believe you have violated this Agreement.</p>
+
+    <p>10.3 Upon termination, all rights granted to you under this Agreement will immediately cease. The provisions relating to intellectual property, disclaimers, limitation of liability, and governing law shall survive termination.</p>
+  </div>
+
+  <!-- Section 11 -->
+  <div class="section-card">
+    <h2>11. Governing Law &amp; Dispute Resolution</h2>
+
+    <p>11.1 This Agreement shall be governed by and construed in accordance with the laws of the Hong Kong Special Administrative Region, without regard to conflict of law principles.</p>
+
+    <p>11.2 Any dispute arising out of or relating to this Agreement or the Service shall first be attempted to be resolved through good-faith negotiations between you and us.</p>
+
+    <p>11.3 If a dispute cannot be resolved through negotiation, it shall be submitted to the competent courts having jurisdiction over the matter.</p>
+
+    <p>11.4 If any provision of this Agreement is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+  </div>
+
+  <!-- Section 12 -->
+  <div class="section-card">
+    <h2>12. Contact Us</h2>
+    <p>If you have any questions, concerns, or claims regarding this Agreement or the Service, please contact us at:</p>
+    <p><strong>Email:</strong> <a href="mailto:ringtone1001@outlook.com">ringtone1001@outlook.com</a></p>
+    <p>We will respond to your inquiry within 15 business days.</p>
+  </div>
+
+  <div class="footer-card">&copy; 2026 Ringtone Maker. All rights reserved.</div>
+
+</div>
+</body>
+</html>

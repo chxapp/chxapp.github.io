@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隐私政策 - 铃声制作</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+      color: #2c2c2e;
+      background: #f2f2f7;
+      line-height: 1.85;
+      padding: 32px 16px 60px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ── 头部卡片 ── */
+    .header-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 36px 32px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+      text-align: center;
+    }
+    .header-card .icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, #d85a30 0%, #f07b4e 100%);
+      border-radius: 14px;
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .header-card .icon svg { width: 28px; height: 28px; }
+    .header-card h1 {
+      font-size: 26px; font-weight: 700; color: #1c1c1e;
+      letter-spacing: -0.3px; margin-bottom: 4px;
+    }
+    .header-card .subtitle {
+      font-size: 14px; color: #8e8e93; margin-bottom: 0;
+    }
+
+    /* ── 引言卡片 ── */
+    .intro-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .intro-card p { margin-bottom: 10px; }
+    .intro-card p:last-child { margin-bottom: 0; }
+
+    /* ── 目录卡片 ── */
+    .toc-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .toc-card .toc-title {
+      font-size: 13px; font-weight: 600; letter-spacing: 0.8px;
+      color: #d85a30; margin-bottom: 14px;
+    }
+    .toc-card .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+    }
+    .toc-card .toc-item {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 8px 12px; border-radius: 8px;
+      background: #fdf8f5;
+      font-size: 14px; color: #3a3a3c;
+    }
+    .toc-card .toc-num {
+      width: 22px; height: 22px;
+      background: #d85a30; color: #fff;
+      border-radius: 50%;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── 正文卡片 ── */
+    .section-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .section-card h2 {
+      font-size: 19px; font-weight: 700; color: #1c1c1e;
+      margin-bottom: 14px; padding-bottom: 12px;
+      border-bottom: 2px solid #f2f2f7;
+      letter-spacing: -0.2px;
+    }
+    .section-card h3 {
+      font-size: 16px; font-weight: 600; color: #3a3a3c;
+      margin: 18px 0 8px;
+    }
+    .section-card p {
+      font-size: 15px; color: #48484a; margin-bottom: 10px;
+    }
+    .section-card p:last-child { margin-bottom: 0; }
+    .section-card ul {
+      margin: 6px 0 12px 20px;
+    }
+    .section-card li {
+      font-size: 15px; color: #48484a; margin-bottom: 6px;
+    }
+    .section-card strong { color: #1c1c1e; font-weight: 600; }
+    .section-card a { color: #d85a30; text-decoration: none; font-weight: 500; }
+    .section-card a:hover { text-decoration: underline; }
+
+    /* ── 表格 ── */
+    .perm-table {
+      width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px;
+      border-radius: 10px; overflow: hidden;
+    }
+    .perm-table th {
+      background: #fdf8f5; padding: 12px 14px; text-align: left;
+      font-weight: 600; color: #d85a30; font-size: 13px;
+    }
+    .perm-table td {
+      padding: 11px 14px; border-bottom: 1px solid #f2f2f7;
+      color: #48484a; vertical-align: top;
+    }
+    .perm-table tr:last-child td { border-bottom: none; }
+
+    /* ── 高亮提示条 ── */
+    .callout {
+      background: #fdf8f5;
+      border-left: 4px solid #d85a30;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 14px 0;
+    }
+    .callout p { margin-bottom: 0; }
+
+    /* ── 底部 ── */
+    .footer-card {
+      text-align: center; padding: 24px;
+      color: #8e8e93; font-size: 13px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 16px 10px 40px; }
+      .header-card { padding: 28px 20px 22px; }
+      .header-card h1 { font-size: 22px; }
+      .intro-card, .toc-card, .section-card { padding: 22px 20px; }
+      .toc-card .toc-grid { grid-template-columns: 1fr; }
+      .section-card h2 { font-size: 17px; }
+      .section-card li { font-size: 14px; }
+      .perm-table { font-size: 12px; }
+      .perm-table th, .perm-table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 头部 -->
+  <div class="header-card">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+      </svg>
+    </div>
+    <h1>铃声制作 隐私政策</h1>
+    <p class="subtitle">生效日期：2026年6月11日</p>
+  </div>
+
+  <!-- 引言 -->
+  <div class="intro-card">
+    <p><strong>【引言】</strong></p>
+    <p>欢迎您使用铃声制作（以下简称"我们"或"本应用"）。我们深知个人信息对您的重要性，尊重并保护您的个人信息及隐私安全。本隐私政策（下称"本政策"）旨在向您说明我们如何收集、使用、存储和共享您的个人信息。</p>
+    <p><strong>在您开始使用铃声制作前，请您务必审慎阅读、充分了解本政策中各条款的内容，特别是以粗体标识的内容。您使用或继续使用铃声制作，即意味着同意我们按照本政策收集、使用、储存和分享您的相关信息。如您不同意本隐私政策，请勿使用本应用。</strong></p>
+  </div>
+
+  <!-- 目录 -->
+  <div class="toc-card">
+    <p class="toc-title">本政策包含以下内容</p>
+    <div class="toc-grid">
+      <div class="toc-item"><span class="toc-num">一</span> 收集和使用个人信息</div>
+      <div class="toc-item"><span class="toc-num">五</span> 未成年人信息保护</div>
+      <div class="toc-item"><span class="toc-num">二</span> Cookies 和同类技术</div>
+      <div class="toc-item"><span class="toc-num">六</span> 您的权利与选择</div>
+      <div class="toc-item"><span class="toc-num">三</span> 共享、转让或披露</div>
+      <div class="toc-item"><span class="toc-num">七</span> 本政策如何更新</div>
+      <div class="toc-item"><span class="toc-num">四</span> 存储和保护个人信息</div>
+      <div class="toc-item"><span class="toc-num">八</span> 如何联系我们</div>
+    </div>
+  </div>
+
+  <!-- 一 -->
+  <div class="section-card">
+    <h2>一、我们如何收集和使用您的个人信息</h2>
+    <p><strong>我们会遵循正当、合法、必要的原则，出于本政策所述目的，收集和使用您在使用本应用过程中主动提供或因使用我们的产品和服务而产生的个人信息。</strong></p>
+
+    <h3>1. 为了保障应用核心功能的正常运行</h3>
+    <p><strong>铃声制作的核心功能是帮助您创建自定义手机铃声。</strong>为实现这一功能，我们可能需要访问以下信息：</p>
+    <ul>
+      <li><strong>媒体库（音乐/音频文件）：</strong>当您使用铃声制作功能时，我们需要访问您设备中的音乐和音频文件，以便您可以选取歌曲进行铃声剪辑和制作。所有音频文件均在您的设备本地处理，不会上传至我们的服务器。</li>
+      <li><strong>文件存储空间：</strong>当您保存制作完成的铃声时，我们需要写入您设备的存储空间。</li>
+    </ul>
+
+    <h3>2. 为了保障应用安全运行和优化服务</h3>
+    <p><strong>我们会收集您使用时的设备信息和服务日志信息，包括：</strong></p>
+    <ul>
+      <li><strong>设备信息：</strong>设备类型、设备名称、设备型号、操作系统和应用程序版本、语言设置、分辨率、IP地址、网络设备硬件地址、接入网络的方式、移动网络信息（包括运营商名称）、产品版本号等软硬件信息。</li>
+      <li><strong>服务日志信息：</strong>应用使用情况、功能点击记录、崩溃报告、性能数据等。</li>
+    </ul>
+    <p>请您注意，单独的设备信息、服务日志信息无法识别特定自然人身份，属于非个人信息。当我们将该等非个人信息与其他信息结合使用并可识别您的自然人身份时，则在结合使用期间，我们会将该等信息视为个人信息，按照本政策进行保护。</p>
+
+    <h3>3. 为您提供安全保障</h3>
+    <p>为提高您使用我们服务的安全性，预防钓鱼网站欺诈和木马病毒，<strong>我们可能会使用或整合您的设备信息、服务日志信息，根据您的使用习惯和常用软件信息等来综合判断您的账户及交易风险</strong>，包括验证身份，预防、发现、调查可能存在的欺诈、网络病毒、网络攻击等安全风险。</p>
+
+    <h3>4. 权限申请与使用说明</h3>
+    <p>为保障铃声制作功能的实现与安全稳定运行，我们将根据实际业务场景申请相关操作系统权限：</p>
+
+    <table class="perm-table">
+      <tr>
+        <th>权限名称</th><th>使用场景与目的</th><th>拒绝后果</th>
+      </tr>
+      <tr>
+        <td><strong>媒体库访问权限</strong></td>
+        <td>导入音乐和音频文件用于创建铃声</td>
+        <td>无法选择本地音频文件制作铃声</td>
+      </tr>
+      <tr>
+        <td><strong>存储写入权限</strong></td>
+        <td>保存制作完成的铃声文件到设备</td>
+        <td>无法保存制作好的铃声</td>
+      </tr>
+      <tr>
+        <td><strong>网络访问权限</strong></td>
+        <td>发送和接收网络数据，展示广告，访问隐私政策链接</td>
+        <td>无法使用网络相关功能</td>
+      </tr>
+      <tr>
+        <td><strong>通知推送权限</strong></td>
+        <td>向您推送应用更新和功能通知</td>
+        <td>无法接收消息通知推送</td>
+      </tr>
+      <tr>
+        <td><strong>跟踪权限 (IDFA)</strong></td>
+        <td>用于广告投放效果优化和分析，降低无关广告对您的打扰</td>
+        <td>不影响核心功能使用，广告相关性降低</td>
+      </tr>
+    </table>
+
+    <p>您关闭权限则视为您撤销了相关授权，我们将不再继续收集您的相关个人信息，也无法为您提供相应功能。但您撤销权限的决定不会影响我们此前基于您的授权所进行的个人信息处理。</p>
+  </div>
+
+  <!-- 二 -->
+  <div class="section-card">
+    <h2>二、Cookies 和同类技术</h2>
+    <p>为确保应用正常高效运转，我们会在您的设备终端系统上存储名为 Cookies 的小数据文件。Cookie 和同类设备信息标识技术是互联网中普遍使用的技术，使用 Cookie 主要为了保障产品与服务的安全高效运转，排查异常情况。<strong>我们不会将 Cookies 用于本隐私政策所述目的之外的任何用途。</strong>您可以清除移动设备上保存的所有 Cookies。</p>
+  </div>
+
+  <!-- 三 -->
+  <div class="section-card">
+    <h2>三、我们如何共享、转让或披露您的个人信息</h2>
+
+    <h3>（一）共享</h3>
+    <p>除以下情形外，未经您同意，我们不会与任何第三方共享您的个人信息：</p>
+    <ul>
+      <li><strong>获得您的明确同意后共享：</strong>在获取您授权同意的情况下，我们会与其他方共享您的个人信息。</li>
+      <li><strong>法定情形下共享：</strong>根据法律法规规定、诉讼争议解决需要，或按行政、司法机关依法提出的要求，对外共享您的个人信息。</li>
+      <li><strong>与合作伙伴共享：</strong>为实现本应用的核心功能和优化服务，我们可能与以下合作伙伴共享必要信息：
+        <ul>
+          <li><strong>广告及分析服务商：</strong>基于优化应用服务的需要，我们可能将您的设备标识符等非个人身份信息提供给广告和分析合作伙伴（如 Google AdMob）。</li>
+          <li><strong>数据处理服务商：</strong>为了维护和不断改进我们的服务，我们可能会将您的信息与数据处理服务商分享，但未经您同意，我们不会将可识别您身份的个人信息与其共享。</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>（二）转让</h3>
+    <p><strong>我们不会将您的个人信息转让给任何公司、组织或个人</strong>，但以下情形除外：</p>
+    <ul>
+      <li>在获取您明确同意的情况下；</li>
+      <li>在涉及合并、收购、资产转让或类似交易时，您的个人信息可能作为交易的一部分被转移。我们会要求新的持有您个人信息的公司、组织继续受本隐私政策的约束。</li>
+    </ul>
+
+    <h3>（三）公开披露</h3>
+    <p>我们仅会在以下情况下披露您的个人信息：</p>
+    <ul>
+      <li>获得您的明确同意后；</li>
+      <li>根据法律法规、强制性行政执法或司法要求所必须提供的情况下。</li>
+    </ul>
+
+    <h3>（四）第三方 SDK 的使用</h3>
+    <p>为保障本应用功能的实现与安全稳定运行，我们将根据实际业务场景需要，接入由第三方提供的软件开发包（SDK）。我们会对合作方获取信息的 SDK 进行严格的安全监测。详情请参见本文末<strong>附件：第三方 SDK 目录</strong>。</p>
+
+    <h3>（五）例外情形</h3>
+    <p>根据相关法律法规，以下情形中共享、转让、公开披露您的个人信息无需事先征得您的授权同意：</p>
+    <ul>
+      <li>为履行法定义务或法定职责所必须；</li>
+      <li>依据法律规定在合理范围内处理您自行公开或已经合法公开的个人信息；</li>
+      <li>根据与您签订和履行合同所必需的；</li>
+      <li>法律法规规定的其他情形。</li>
+    </ul>
+  </div>
+
+  <!-- 四 -->
+  <div class="section-card">
+    <h2>四、我们如何存储和保护您的个人信息</h2>
+
+    <h3>（一）信息存储</h3>
+    <ul>
+      <li><strong>存储地点：</strong>我们会按照法律法规规定，将收集的用户个人信息存储于中国境内。</li>
+      <li><strong>存储期限：</strong>我们仅为实现目的所必需的时间保留您的个人信息，超出必要期限后我们将对您的个人信息进行删除或匿名化处理。</li>
+    </ul>
+
+    <h3>（二）安全保护措施</h3>
+    <p>我们会采用符合业界标准的安全防护措施，包括建立合理的制度规范、安全技术来防止您的信息遭到未经授权的访问使用、公开披露、修改、损坏或丢失。我们通过信息接触者保密协议、监控和审计机制等手段对数据进行全面安全控制。</p>
+    <div class="callout">
+      <p><strong>请您理解，互联网并非绝对安全的环境。在不幸发生个人信息安全事件后，我们会按照法律法规的要求及时向您告知，并采取相应的处置措施。</strong></p>
+    </div>
+  </div>
+
+  <!-- 五 -->
+  <div class="section-card">
+    <h2>五、未成年人的个人信息保护</h2>
+    <p>我们非常重视对未成年人个人信息的保护。<strong>本应用主要面向成年人。</strong>如您为未成年人，我们要求您请您的父母或其他监护人仔细阅读本隐私政策，并在征得您的监护人同意的前提下使用我们的服务。如我们发现未成年人在未取得监护人同意的情况下向我们提供了个人信息，我们将尽快删除相关数据。</p>
+  </div>
+
+  <!-- 六 -->
+  <div class="section-card">
+    <h2>六、您的权利与选择</h2>
+    <p>您对您的个人信息享有以下权利：</p>
+    <ul>
+      <li><strong>访问与更正：</strong>您可以通过设备设置查看和管理应用权限。</li>
+      <li><strong>删除：</strong>您可以卸载本应用来停止所有数据收集。如需删除已收集的个人信息，请通过本政策载明的联系方式与我们联系。</li>
+      <li><strong>撤回同意：</strong>您可以在设备"设置"中随时撤回已授予的权限（如媒体库访问权限）。您也可以在 iOS 系统"设置 &gt; 隐私与安全性 &gt; 跟踪"中管理广告追踪权限。</li>
+      <li><strong>注销账号：</strong>如您注册了账号，可通过应用内设置注销或联系我们的客服完成注销。</li>
+    </ul>
+  </div>
+
+  <!-- 七 -->
+  <div class="section-card">
+    <h2>七、本政策如何更新</h2>
+    <p><strong>为给您提供更好的服务，我们的业务将不时更新和优化，本隐私政策也可能随之调整和更新。</strong>我们会通过应用内推送通知或其他适当方式提醒您相关内容的更新。如您不同意修改后的隐私政策，您有权立即停止使用我们的服务。若您继续使用我们的服务，即表示同意接受更新后的本政策并受之约束。</p>
+  </div>
+
+  <!-- 八 -->
+  <div class="section-card">
+    <h2>八、如何联系我们</h2>
+    <p>如果您对本政策或个人信息相关事宜有任何疑问、意见或建议，可通过以下方式与我们联系：</p>
+    <p><strong>电子邮件：</strong><a href="mailto:ringtone1001@outlook.com">ringtone1001@outlook.com</a></p>
+    <p>一般情况下，我们会在十五个工作日内给予您回复。</p>
+  </div>
+
+  <!-- 附件 -->
+  <div class="section-card">
+    <h2>附件：第三方 SDK 目录</h2>
+    <p>为保障铃声制作相关功能的实现与应用安全稳定的运行，我们接入由第三方提供的软件开发包（SDK）。请注意，第三方 SDK 可能因版本升级、策略调整等原因导致数据处理类型存在一定变化，请以其官方公示的说明为准。</p>
+
+    <h3>1. AdMob SDK (Google)</h3>
+    <ul>
+      <li><strong>使用目的：</strong>向用户推送广告信息、反作弊</li>
+      <li><strong>获取信息：</strong>唯一标识符（IDFA）、设备类型和设置、操作系统、移动网络信息（包括运营商名称）、应用版本号、IP 地址、崩溃报告</li>
+      <li><strong>调用的设备权限：</strong>获取网络状态、访问 WiFi 状态</li>
+      <li><strong>隐私政策：</strong><a href="https://policies.google.cn/privacy" target="_blank">https://policies.google.cn/privacy</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-card">&copy; 2026 铃声制作 版权所有</div>
+
+</div>
+</body>
+</html>
