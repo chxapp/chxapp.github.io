@@ -1,0 +1,18 @@
+{
+  "appName": "Game Emulator",
+  "developer": "蔡宏勋",
+  "contactEmail": "caihongx2026@outlook.com",
+  "effectiveDate": "2026-09-22",
+  "appStoreID": "6814699594",
+  "documentVersion": "1.7",
+  "languages": [
+    "zh-Hans",
+    "zh-Hant",
+    "en"
+  ],
+  "localizedAppNames": {
+    "en": "Game Emulator",
+    "zh-Hans": "Delta模拟器",
+    "zh-Hant": "Delta模擬器"
+  }
+}

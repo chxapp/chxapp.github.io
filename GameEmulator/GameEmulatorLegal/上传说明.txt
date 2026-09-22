@@ -1,0 +1,34 @@
+Game Emulator / Delta模拟器 — 网页上传说明
+
+这是当前应用法律文档 1.7 的完整静态网站，可直接上传，不需要安装程序或编译。
+开发者：蔡宏勋
+隐私邮箱：caihongx2026@outlook.com
+
+1. 将本文件夹的全部内容上传到同一 HTTPS 网站目录。
+   index.html、style.css 和 en / zh-Hans / zh-Hant 三个目录保持相对位置。
+   ZIP 根目录直接包含 index.html，适合支持 ZIP 上传的静态托管服务。
+2. 浏览器打开 index.html 可选择语言和文件。
+3. 用手机和电脑核对以下页面均可公开访问，无需登录：
+   简体隐私政策：zh-Hans/privacy.html
+   繁体隐私政策：zh-Hant/privacy.html
+   英文隐私政策：en/privacy.html
+   简体用户协议：zh-Hans/terms.html
+   繁体用户协议：zh-Hant/terms.html
+   英文用户协议：en/terms.html
+   每份页面均有三语言切换链接。
+4. AdMob 的欧洲法规消息可填写英文隐私政策完整 HTTPS 地址（en/privacy.html）。
+   App Store 各语言的隐私政策 URL 可填写对应语言地址。
+   上传完成后把英文隐私政策完整地址发回，以继续核对 UMP 配置与实际表单。
+
+AdMob 后台待办：隐私与消息 → 欧洲法规 → 创建消息。
+选择 App ID ca-app-pub-3981921633116070~5257942907，填入线上隐私政策地址，
+核对默认及附加语言、地区与用户选择后发布。建议默认英文，覆盖 EEA / 英国 / 瑞士，
+提供“不同意”选择；现有应用设置页已接入 UMP 隐私选项，可重新打开适用表单。
+发布前请逐一预览所选语言。
+
+本文件夹仅含公开网页及其样式/公开配置，没有广告代码、统计脚本、账号密钥或证书。
+页面内容与当前应用内离线文档相同。实际托管后需要再检查网络地址、样式及语言链接。
+
+Google 官方配置说明：
+https://support.google.com/admob/answer/10113207
+https://support.google.com/admob/answer/10113106
